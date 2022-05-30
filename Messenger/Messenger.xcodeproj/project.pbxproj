@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD02148F2841298800C0BE0A /* UserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD02148E2841298800C0BE0A /* UserList.swift */; };
+		AD021492284262D100C0BE0A /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD021491284262D100C0BE0A /* BaseTextField.swift */; };
+		AD021494284299B000C0BE0A /* Model_User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD021493284299B000C0BE0A /* Model_User.swift */; };
+		AD19399F283B7C4D003742AC /* Model_AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD19399E283B7C4D003742AC /* Model_AuthUser.swift */; };
+		AD1939A2283B7F09003742AC /* UserAuth_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1939A1283B7F09003742AC /* UserAuth_ViewModel.swift */; };
+		AD1939A5283B7FA9003742AC /* UserAuth_Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1939A4283B7FA9003742AC /* UserAuth_Repository.swift */; };
+		AD1939A7283BB9FD003742AC /* App_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1939A6283BB9FD003742AC /* App_Manager.swift */; };
 		AD4E6B8C283741C9006FB523 /* MessengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4E6B8B283741C9006FB523 /* MessengerApp.swift */; };
 		AD4E6B90283741C9006FB523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4E6B8F283741C9006FB523 /* Assets.xcassets */; };
 		AD4E6B93283741C9006FB523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD4E6B92283741C9006FB523 /* Preview Assets.xcassets */; };
@@ -37,6 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AD02148E2841298800C0BE0A /* UserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserList.swift; sourceTree = "<group>"; };
+		AD021491284262D100C0BE0A /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		AD021493284299B000C0BE0A /* Model_User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_User.swift; sourceTree = "<group>"; };
+		AD19399E283B7C4D003742AC /* Model_AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model_AuthUser.swift; sourceTree = "<group>"; };
+		AD1939A1283B7F09003742AC /* UserAuth_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth_ViewModel.swift; sourceTree = "<group>"; };
+		AD1939A4283B7FA9003742AC /* UserAuth_Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth_Repository.swift; sourceTree = "<group>"; };
+		AD1939A6283BB9FD003742AC /* App_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App_Manager.swift; sourceTree = "<group>"; };
 		AD4E6B88283741C9006FB523 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD4E6B8B283741C9006FB523 /* MessengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerApp.swift; sourceTree = "<group>"; };
 		AD4E6B8F283741C9006FB523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +91,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD02148D2841294800C0BE0A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD4E6BBA283745C2006FB523 /* LoginView.swift */,
+				AD02148E2841298800C0BE0A /* UserList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD021490284262B200C0BE0A /* CustomSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				AD021491284262D100C0BE0A /* BaseTextField.swift */,
+			);
+			path = CustomSubViews;
+			sourceTree = "<group>";
+		};
+		AD19399D283B7C2A003742AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AD19399E283B7C4D003742AC /* Model_AuthUser.swift */,
+				AD1939A6283BB9FD003742AC /* App_Manager.swift */,
+				AD021493284299B000C0BE0A /* Model_User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AD1939A0283B7EF7003742AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AD1939A1283B7F09003742AC /* UserAuth_ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AD1939A3283B7F93003742AC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AD1939A4283B7FA9003742AC /* UserAuth_Repository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		AD4E6B7F283741C9006FB523 = {
 			isa = PBXGroup;
 			children = (
@@ -100,11 +157,15 @@
 		AD4E6B8A283741C9006FB523 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				AD021490284262B200C0BE0A /* CustomSubViews */,
+				AD02148D2841294800C0BE0A /* Views */,
+				AD1939A3283B7F93003742AC /* Repositories */,
+				AD1939A0283B7EF7003742AC /* ViewModel */,
+				AD19399D283B7C2A003742AC /* Models */,
 				AD4E6BBC283748A1006FB523 /* GoogleService-Info.plist */,
 				AD4E6B8B283741C9006FB523 /* MessengerApp.swift */,
 				AD4E6B8F283741C9006FB523 /* Assets.xcassets */,
 				AD4E6B91283741C9006FB523 /* Preview Content */,
-				AD4E6BBA283745C2006FB523 /* LoginView.swift */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -272,8 +333,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD1939A5283B7FA9003742AC /* UserAuth_Repository.swift in Sources */,
 				AD4E6BBB283745C2006FB523 /* LoginView.swift in Sources */,
+				AD021492284262D100C0BE0A /* BaseTextField.swift in Sources */,
+				AD1939A2283B7F09003742AC /* UserAuth_ViewModel.swift in Sources */,
+				AD19399F283B7C4D003742AC /* Model_AuthUser.swift in Sources */,
 				AD4E6B8C283741C9006FB523 /* MessengerApp.swift in Sources */,
+				AD02148F2841298800C0BE0A /* UserList.swift in Sources */,
+				AD021494284299B000C0BE0A /* Model_User.swift in Sources */,
+				AD1939A7283BB9FD003742AC /* App_Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
