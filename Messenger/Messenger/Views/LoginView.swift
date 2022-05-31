@@ -12,6 +12,8 @@ struct LoginView: View {
     
     @State var switchToList = false
     
+    @StateObject var app_manager: appManager = appManager()
+    
     var body: some View {
         
         return Group {
@@ -21,7 +23,7 @@ struct LoginView: View {
             else  {
                 loginViewForm(switchToList: $switchToList)
             }
-        }
+        }.environmentObject(app_manager)
     }
     
     struct loginViewForm: View {
@@ -42,7 +44,7 @@ struct LoginView: View {
         
         @Binding var switchToList: Bool
         
-        @StateObject var app_manager: appManager = appManager()
+        @EnvironmentObject var app_manager: appManager
         
         var body: some View {
             VStack(spacing: 0) {
@@ -128,7 +130,6 @@ struct LoginView: View {
                 Color(uiColor: .systemGroupedBackground)
             }
             .ignoresSafeArea()
-            .environmentObject(app_manager)
         }
         
         func signUp() {

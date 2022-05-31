@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct UserList: View {
+    
+    @EnvironmentObject var app_manager: appManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Hello, \(app_manager.loggedInID)!")
     }
 }
 
 struct UserList_Previews: PreviewProvider {
     static var previews: some View {
         UserList()
+            .environmentObject(appManager())
     }
 }
