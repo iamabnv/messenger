@@ -9,5 +9,8 @@ import Foundation
 import Combine
 
 class appManager: ObservableObject {
+    
+    static let app_manager = appManager()
+    
     @Published var loggedInID: String = ""
 }
