@@ -12,18 +12,16 @@ struct LoginView: View {
     
     @State var switchToList = false
     
-    @StateObject var app_manager: appManager = appManager()
-    
     var body: some View {
         
         return Group {
             if switchToList {
-                UserList()
+                BaseView()
             }
             else  {
                 loginViewForm(switchToList: $switchToList)
             }
-        }.environmentObject(app_manager)
+        }
     }
     
     struct loginViewForm: View {
@@ -44,7 +42,7 @@ struct LoginView: View {
         
         @Binding var switchToList: Bool
         
-        @EnvironmentObject var app_manager: appManager
+        let app_manager = appManager.app_manager
         
         var body: some View {
             VStack(spacing: 0) {
