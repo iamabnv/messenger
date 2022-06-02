@@ -89,6 +89,21 @@ struct LoginView: View {
                         .sheet(isPresented: $showSheet) {
                             NavigationView {
                                 Form {
+                                    Section {
+                                        HStack {
+                                            Spacer()
+                                            Button {
+                                                //open photo picker
+                                            } label: {
+                                                Image(systemName:"person.circle.fill")
+                                                    .resizable()
+                                                    .frame(width: 128, height: 128, alignment: .center)
+                                            }
+                                            Spacer()
+                                        }.listRowBackground(Color.clear)
+                                    }
+                                    
+                                    
                                     Section("Name") {
                                         TextField("First Name", text: $newUser.first_name)
                                             .disableAutocorrection(true)

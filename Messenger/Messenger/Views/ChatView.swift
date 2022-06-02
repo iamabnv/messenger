@@ -15,7 +15,7 @@ struct ChatView: View {
     
     var body: some View {
         Text("Hello, \(id.id!)!")
-            .navigationTitle(Text("\(id.first_name) \(id.last_name)"))
+            .navigationTitle(Text(""))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -28,6 +28,16 @@ struct ChatView: View {
                         }
                     }
 
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    HStack {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 36, height: 36)
+                        Text("\(id.first_name) \(id.last_name)")
+                    }
+                    .padding(15)
                 }
             }
     }
