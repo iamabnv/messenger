@@ -8,27 +8,64 @@
 import Foundation
 import Combine
 import FirebaseFirestore
+import FirebaseStorage
 import FirebaseFirestoreSwift
+import UIKit
  
 class UserAuth_Repository : ObservableObject {
     
-    static func signUp(newUser: User, password: String) async -> String {
+    static func signUp(newUser: User, password: String, image: UIImage?) async -> String {
         let db = Firestore.firestore()
         var id: String = ""
+        
+        var pfp: String = ""
         
         let newUserRef = db.collection("User_Auth").document()
         
         id = newUserRef.documentID
         
-        do {
-            try newUserRef.setData(from: AuthUser(newID: id, newUsername: newUser.username, newPassword: password))
+        if image != nil {
+            let storage = Storage.storage()
+            let storageRef = storage.reference().child("Users/pfp/\(id).jpg")
             
-            try db.collection("Users").document(id).setData(from: newUser)
+            let resized_img = image!.jpegData(compressionQuality: 0.2)
             
-        } catch {
-            print(error)
-            id = ""
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpg"
+            
+            
+            do {
+                _ = try await storageRef.putDataAsync(resized_img!, metadata: metadata)
+                
+                let url = try await storageRef.downloadURL()
+                
+                pfp = url.absoluteString
+                
+                try await newUserRef.setData(from: AuthUser(newID: id, newUsername: newUser.username, newPassword: password))
+                
+                let newNewUser = User(First_name: newUser.first_name, Last_name: newUser.last_name, Username: newUser.username, Pfp: pfp)
+                
+                try await db.collection("Users").document(id).setData(from: newNewUser)
+                
+            } catch {
+                print(error)
+            }
         }
+        else {
+            do {
+                try await newUserRef.setData(from: AuthUser(newID: id, newUsername: newUser.username, newPassword: password))
+                
+                let newNewUser = User(First_name: newUser.first_name, Last_name: newUser.last_name, Username: newUser.username, Pfp: pfp)
+                
+                try await db.collection("Users").document(id).setData(from: newNewUser)
+                
+            } catch {
+                print(error)
+                id = ""
+            }
+        }
+        
+        
         
         return id
     }
@@ -68,5 +105,13 @@ class UserAuth_Repository : ObservableObject {
             return true
         }
         return false
+    }
+}
+
+extension FirebaseFirestore.DocumentReference {
+    func setData<T: Encodable>(from: T, merge: Bool = false) async throws {
+        let encoder = Firestore.Encoder()
+        let data = try encoder.encode(from)
+        try await setData(data, merge: merge)
     }
 }
