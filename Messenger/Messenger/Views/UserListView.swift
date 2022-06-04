@@ -28,13 +28,6 @@ struct UserListView: View {
                                 .frame(height: 50)
                         }
                     }
-                    
-                    /*NavigationLink {
-                        ChatView(id: item.user)
-                    } label: {
-                        UserListItemView(userItemVM: item)
-                                .frame(height: 50)
-                    }*/
                 }
             }
             .navigationTitle(Text("Chats"))

@@ -34,7 +34,8 @@ struct ChatView: View {
                     HStack {
                         Image(systemName: "person.circle.fill")
                             .resizable()
-                            .frame(width: 36, height: 36)
+                            .frame(width: 35, height: 35)
+                            .padding(.trailing, 5)
                         Text("\(id.first_name) \(id.last_name)")
                     }
                     .padding(15)

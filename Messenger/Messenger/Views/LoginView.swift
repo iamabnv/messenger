@@ -38,6 +38,14 @@ struct LoginView: View {
         
         @State var addAlert: Bool = false
         
+        @State private var showingImagePicker: Bool = false
+        
+        @State private var inputImage: UIImage?
+        
+        @State private var image: Image?
+        
+        @State private var signUpDisabled: Bool = false
+        
         @State var newUser: User = User()
         
         @Binding var switchToList: Bool
@@ -94,10 +102,21 @@ struct LoginView: View {
                                             Spacer()
                                             Button {
                                                 //open photo picker
+                                                showingImagePicker = true
                                             } label: {
-                                                Image(systemName:"person.circle.fill")
-                                                    .resizable()
-                                                    .frame(width: 128, height: 128, alignment: .center)
+                                                if inputImage != nil {
+                                                    image?
+                                                        .resizable()
+                                                        .frame(width: 128, height: 128, alignment: .center)
+                                                }
+                                                else {
+                                                    Image(systemName:"person.circle.fill")
+                                                        .resizable()
+                                                        .frame(width: 128, height: 128, alignment: .center)
+                                                }
+                                            }
+                                            .sheet(isPresented: $showingImagePicker) {
+                                                ImagePicker(image: $inputImage)
                                             }
                                             Spacer()
                                         }.listRowBackground(Color.clear)
@@ -126,6 +145,7 @@ struct LoginView: View {
                                                 Spacer()
                                             }
                                         }
+                                        .disabled(signUpDisabled)
                                         .alert(isPresented: $addAlert) {
                                             Alert (
                                                 title: Text("Error"),
@@ -135,6 +155,9 @@ struct LoginView: View {
                                     }
                                 }
                                 .navigationTitle(Text("New User"))
+                                .onChange(of: inputImage) { _ in
+                                        loadImage()
+                                }
                             }
                         }
                         Spacer()
@@ -146,9 +169,11 @@ struct LoginView: View {
         }
         
         func signUp() {
+            signUpDisabled = true
             Task {
-                let id = await UserAuth_Repository.signUp(newUser: newUser, password: sheetPassword)
-                
+                let id = await UserAuth_Repository.signUp(newUser: newUser, password: sheetPassword, image: inputImage)
+                signUpDisabled = false
+                print("Hello world id: \(id)")
                 if id == "" {
                     addAlert = true
                 }
@@ -158,6 +183,11 @@ struct LoginView: View {
                     switchToList = true
                 }
             }
+        }
+        
+        func loadImage() {
+            guard let inputImage = inputImage else { return }
+            image = Image(uiImage: inputImage)
         }
     }
     
